@@ -18,7 +18,7 @@ export default function Page() {
 
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <a className="hover:underline" href="#what">
-              What it is
+              What can DIY RLP do
             </a>
             <a className="hover:underline" href="#features">
               Features
@@ -134,15 +134,14 @@ export default function Page() {
           </div>
         </section>
 
-        {/* What it is */}
+        {/* What can DIY RLP do */}
         <section id="what" className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-              What it is
+              What can DIY RLP do
             </h2>
             <p className="mt-2 max-w-3xl text-base text-slate-600 md:text-lg">
-              A deterministic retirement cash-flow workbook designed to explain outcomes—not
-              just output them.
+              A deterministic retirement cash-flow workbook designed to test every imaginable outcome.
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
