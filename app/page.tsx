@@ -58,9 +58,9 @@ export default function Page() {
               </div>
 
              <h1 className="text-3xl md:text-4xl font-semibold leading-snug tracking-tight">
-              Financial planners charge tens of thousands of dollars to model retirement.
+              Financial planners often charge tens of thousands of dollars to model retirement.
               <span className="block mt-2">
-              DIY Retirement Lab Pro does the same work — for about $150.
+              DIY Retirement Lab Pro does the same work - for about $150.
               </span>
              </h1>
 
