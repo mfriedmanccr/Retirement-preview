@@ -11,7 +11,7 @@ export default function Page() {
             <div className="leading-tight">
               <div className="font-semibold">DIY Retirement Lab Pro</div>
               <div className="text-xs text-slate-500">
-                Professional-grade retirement planning—without paying an advisor thousands.
+                Professional-grade retirement planning for about $150.
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Page() {
              <h1 className="text-3xl md:text-4xl font-semibold leading-snug tracking-tight">
               Financial planners charge tens of thousands of dollars to model retirement.
               <span className="block mt-2">
-              DIY Retirement Lab Pro does the same work — for about $100.
+              DIY Retirement Lab Pro does the same work — for about $150.
               </span>
              </h1>
 
