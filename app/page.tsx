@@ -59,15 +59,13 @@ export default function Page() {
 
               <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
                 Financial planners charge tens of thousands of dollars to model retirement.
-                DIY Retirement Lab Pro will do it for you - for about $100.
-.
+                DIY Retirement Lab Pro does the same work - for about $100.
               </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
                 DIY Retirement Lab Pro lets you model it all; accumulation pre-retirement,
                 year-by-year cash flow, Social Security taxation logic, RMD mechanics,
                 and explicit withdrawal sequencing, all without black-box projections.
-.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
