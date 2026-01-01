@@ -57,10 +57,12 @@ export default function Page() {
                 Transparent • Deterministic • Audit-ready
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-semibold leading-snug tracking-tight">       
-                Financial planners charge tens of thousands of dollars to model retirement.
-                DIY Retirement Lab Pro does the same work - for about $100.
-              </h1>
+             <h1 className="text-3xl md:text-4xl font-semibold leading-snug tracking-tight">
+              Financial planners charge tens of thousands of dollars to model retirement.
+              <span className="block mt-2">
+              DIY Retirement Lab Pro does the same work — for about $100.
+              </span>
+             </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
                 DIY Retirement Lab Pro lets you model it all; accumulation pre-retirement,
