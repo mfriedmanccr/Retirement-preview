@@ -134,7 +134,7 @@ export default function Page() {
           </div>
         </section>
 
-        {/* What can DIY RLP do */}
+        {/* What isDIY RLP */}
         <section id="what" className="py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
