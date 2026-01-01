@@ -9,7 +9,7 @@ export default function Page() {
               <span className="text-sm font-semibold">XL</span>
             </div>
             <div className="leading-tight">
-              <div className="font-semibold">[RETIREMENT PLANNING WORKBOOK]</div>
+              <div className="font-semibold">DIY Retirement Lab Pro</div>
               <div className="text-xs text-slate-500">
                 Professional-grade retirement planning—without paying an advisor thousands.
               </div>
@@ -62,7 +62,7 @@ export default function Page() {
               </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-                [DIY Retirement Lab Pro] is an Excel workbook built for serious planners:
+                DIY Retirement Lab Pro is an Excel workbook built for serious planners:
                 year-by-year cash flow, Social Security taxation logic, RMD mechanics,
                 and explicit withdrawal sequencing—without black-box projections.
               </p>
