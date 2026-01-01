@@ -11,7 +11,7 @@ export default function Page() {
             <div className="leading-tight">
               <div className="font-semibold">[RETIREMENT PLANNING WORKBOOK]</div>
               <div className="text-xs text-slate-500">
-                Deterministic retirement workbook
+                Professional-grade retirement planning—without paying an advisor thousands.
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function Page() {
               </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-                [PRODUCT NAME] is an Excel workbook built for serious planners:
+                [DIY Retirement Lab Pro] is an Excel workbook built for serious planners:
                 year-by-year cash flow, Social Security taxation logic, RMD mechanics,
                 and explicit withdrawal sequencing—without black-box projections.
               </p>
@@ -379,7 +379,7 @@ export default function Page() {
           <div className="mx-auto max-w-6xl px-4 py-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div className="text-sm">
-                <div className="font-semibold">[PRODUCT NAME]</div>
+                <div className="font-semibold">[DIY Retirement Plan Pro]</div>
                 <div className="text-slate-500">
                   © {new Date().getFullYear()} [YOUR NAME OR LLC]. All rights reserved.
                 </div>
