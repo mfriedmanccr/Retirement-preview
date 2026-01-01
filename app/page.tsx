@@ -18,7 +18,7 @@ export default function Page() {
 
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <a className="hover:underline" href="#what">
-              What can DIY RLP do
+              What is DIY RLP
             </a>
             <a className="hover:underline" href="#features">
               Features
