@@ -58,13 +58,16 @@ export default function Page() {
               </div>
 
               <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-                Plan retirement cash flow with a model you can actually inspect.
+                Financial planners charge tens of thousands of dollars to model retirement.
+                DIY Retirement Lab Pro will do it for you - for about $100.
+.
               </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-                DIY Retirement Lab Pro is an Excel workbook built for serious planners:
+                DIY Retirement Lab Pro lets you model it all; accumulation pre-retirement,
                 year-by-year cash flow, Social Security taxation logic, RMD mechanics,
-                and explicit withdrawal sequencing—without black-box projections.
+                and explicit withdrawal sequencing, all without black-box projections.
+.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
