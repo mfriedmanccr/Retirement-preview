@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import Image from "next/image";
 
 type TabKey = "overview" | "how" | "pricing" | "manual" | "faq";
 
@@ -89,62 +88,16 @@ export default function Home() {
 
               <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-2xl">
                 A professional-grade retirement planning engine that answers the
-                hard questions: retirement timing, spending safety, Social
-                Security strategy, and how long your money lasts — for{" "}
+                hard questions — for{" "}
                 <span className="font-semibold text-white">$150</span>.
               </p>
-
-              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
-                Hiring a professional for this level of retirement planning
-                commonly costs{" "}
-                <span className="text-slate-200 font-semibold">
-                  several thousand dollars
-                </span>
-                . DIY RLP gives you that same class of decision-grade modeling
-                with unlimited scenario testing.
-              </p>
-
-              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
-                Built in{" "}
-                <span className="text-slate-200 font-semibold">
-                  Microsoft Excel
-                </span>{" "}
-                — a familiar format you already know, with transparent inputs
-                and fully visible calculations.
-              </p>
-
-              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
-                Even if you’re already retired, DIY RLP helps you{" "}
-                <span className="text-slate-200 font-semibold">
-                  spend with confidence
-                </span>
-                , stress-test contingencies, and validate that your plan still
-                holds.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <button
-                  onClick={() => go("pricing")}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold hover:opacity-90 transition"
-                >
-                  Get Access
-                </button>
-                <button
-                  onClick={() => go("manual")}
-                  className="px-6 py-3 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
-                >
-                  Read the Manual
-                </button>
-              </div>
             </div>
 
             <div className="lg:col-span-5">
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-black/40">
-                <Image
+                <img
                   src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80"
                   alt="Financial planning desk"
-                  width={1400}
-                  height={900}
                   className="h-72 md:h-96 w-full object-cover"
                 />
                 <div className="p-5 text-sm text-slate-300">
@@ -167,11 +120,9 @@ export default function Home() {
               {/* Screenshot #0 */}
               <div className="mb-10">
                 <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                  <Image
+                  <img
                     src="/screenshots/first.png"
                     alt="DIY RLP workbook screenshot"
-                    width={1600}
-                    height={900}
                     className="w-full object-cover"
                   />
                   <div className="p-4 text-sm text-slate-300">
@@ -183,16 +134,13 @@ export default function Home() {
               {/* Screenshot #1 */}
               <div className="mb-10">
                 <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                  <Image
+                  <img
                     src="/screenshots/summary.png"
-                    alt="Year-by-year retirement cash flow, taxes, and portfolio balances"
-                    width={1600}
-                    height={900}
+                    alt="Year-by-year retirement output"
                     className="w-full object-cover"
                   />
                   <div className="p-4 text-sm text-slate-300">
-                    Actual year-by-year output showing spending, Social
-                    Security, withdrawals, taxes, and ending balances.
+                    Year-by-year output showing spending, taxes, and balances.
                   </div>
                 </div>
               </div>
@@ -218,23 +166,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-slate-400 flex justify-between">
-          <div>© {new Date().getFullYear()} DIY Retirement Lab Pro</div>
-          <div className="flex gap-4">
-            <button onClick={() => go("pricing")} className="hover:text-white">
-              Pricing
-            </button>
-            <button onClick={() => go("manual")} className="hover:text-white">
-              Manual
-            </button>
-            <button onClick={() => go("faq")} className="hover:text-white">
-              FAQ
-            </button>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
@@ -261,99 +192,17 @@ function AnimatedPanel({
 }
 
 function Overview() {
-  return (
-    <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        Overview
-      </h2>
-
-      <p className="text-slate-300 max-w-3xl">
-        Most retirement tools are vague. This one is built to answer the
-        decisions that actually matter — with deterministic, transparent
-        results you can verify.
-      </p>
-
-      <p className="text-slate-400 max-w-3xl">
-        Professional retirement planning at this depth often costs{" "}
-        <span className="text-slate-200 font-semibold">
-          several thousand dollars
-        </span>
-        . DIY RLP gives you the same class of modeling logic, with unlimited
-        “what-if” testing, in Excel.
-      </p>
-    </div>
-  );
+  return <div className="text-slate-300">Overview content</div>;
 }
-
 function HowItWorks() {
-  return (
-    <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        How it works
-      </h2>
-
-      <ul className="grid md:grid-cols-4 gap-4 text-slate-300">
-        <li>Input your real numbers</li>
-        <li>Run deterministic models</li>
-        <li>Compare scenarios</li>
-        <li>Decide with confidence</li>
-      </ul>
-    </div>
-  );
+  return <div className="text-slate-300">How it works</div>;
 }
-
 function Pricing() {
-  return (
-    <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        Pricing
-      </h2>
-
-      <p className="text-slate-300 max-w-3xl">
-        Comparable professional planning commonly costs{" "}
-        <span className="text-slate-200 font-semibold">
-          several thousand dollars
-        </span>
-        . DIY RLP gives you full transparency and unlimited scenarios for $150.
-      </p>
-
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 max-w-md">
-        <div className="text-4xl font-extrabold text-white">$150</div>
-        <div className="text-slate-400 mt-1">One-time · No subscription</div>
-      </div>
-    </div>
-  );
+  return <div className="text-slate-300">Pricing</div>;
 }
-
 function Manual() {
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        Quick Start Manual
-      </h2>
-
-      <ol className="list-decimal list-inside text-slate-300 space-y-2">
-        <li>Open the Excel workbook</li>
-        <li>Enter your inputs</li>
-        <li>Review assumptions</li>
-        <li>Compare scenarios</li>
-        <li>Stress-test and validate</li>
-      </ol>
-    </div>
-  );
+  return <div className="text-slate-300">Manual</div>;
 }
-
 function FAQ() {
-  return (
-    <div className="space-y-4">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        FAQ
-      </h2>
-
-      <p className="text-slate-300 max-w-3xl">
-        This replaces the modeling portion of professional planning — the part
-        that usually costs thousands of dollars.
-      </p>
-    </div>
-  );
+  return <div className="text-slate-300">FAQ</div>;
 }
