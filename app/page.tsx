@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 
-type TabKey = "overview" | "how" | "pricing" | "faq";
+type TabKey = "overview" | "how" | "pricing" | "manual" | "faq";
 
 export default function Home() {
   const [active, setActive] = useState<TabKey>("overview");
@@ -13,6 +13,7 @@ export default function Home() {
       { key: "overview" as const, label: "Overview" },
       { key: "how" as const, label: "How it Works" },
       { key: "pricing" as const, label: "Pricing" },
+      { key: "manual" as const, label: "Manual" },
       { key: "faq" as const, label: "FAQ" },
     ],
     []
@@ -20,7 +21,6 @@ export default function Home() {
 
   function go(tab: TabKey) {
     setActive(tab);
-    // scroll to the tab content area so the user sees the section change
     requestAnimationFrame(() => {
       panelsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -86,9 +86,16 @@ export default function Home() {
                 for <span className="font-semibold text-white">$150</span>.
               </p>
 
+              {/* Excel blurb (added) */}
+              <p className="mt-3 text-base md:text-lg text-slate-400 max-w-2xl">
+                Built in <span className="text-slate-200 font-semibold">Microsoft Excel</span> — a familiar format you
+                already know, with transparent inputs and fully visible calculations.
+              </p>
+
               <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
-                Even if you’re already retired, DIY RLP helps you <span className="text-slate-200 font-semibold">spend with confidence</span>,
-                stress-test contingencies, and validate that your plan still holds.
+                Even if you’re already retired, DIY RLP helps you{" "}
+                <span className="text-slate-200 font-semibold">spend with confidence</span>, stress-test contingencies,
+                and validate that your plan still holds.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -103,6 +110,12 @@ export default function Home() {
                   className="px-6 py-3 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
                 >
                   See How It Works
+                </button>
+                <button
+                  onClick={() => go("manual")}
+                  className="px-6 py-3 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
+                >
+                  Read the Manual
                 </button>
               </div>
 
@@ -142,10 +155,7 @@ export default function Home() {
 
       {/* Tab Content */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div
-          ref={panelsRef}
-          className="rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden"
-        >
+        <div ref={panelsRef} className="rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden">
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
               <Overview />
@@ -156,7 +166,12 @@ export default function Home() {
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "pricing"}>
-              <Pricing onBuy={() => go("pricing")} />
+              <Pricing />
+            </AnimatedPanel>
+
+            {/* Manual tab (added) */}
+            <AnimatedPanel show={active === "manual"}>
+              <Manual />
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "faq"}>
@@ -172,6 +187,9 @@ export default function Home() {
           <div className="flex gap-4">
             <button onClick={() => go("pricing")} className="hover:text-white transition">
               Pricing
+            </button>
+            <button onClick={() => go("manual")} className="hover:text-white transition">
+              Manual
             </button>
             <button onClick={() => go("faq")} className="hover:text-white transition">
               FAQ
@@ -229,8 +247,8 @@ function Overview() {
 
       <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6">
         <div className="text-sm text-slate-300">
-          <span className="font-semibold text-white">Bottom line:</span> model and test every scenario before
-          making irreversible decisions.
+          <span className="font-semibold text-white">Bottom line:</span> model and test every scenario before making
+          irreversible decisions.
         </div>
       </div>
     </div>
@@ -269,9 +287,7 @@ function HowItWorks() {
             className="h-48 w-full object-cover"
             loading="lazy"
           />
-          <div className="p-6 text-sm text-slate-300">
-            Transparent assumptions so you can audit results.
-          </div>
+          <div className="p-6 text-sm text-slate-300">Transparent assumptions so you can audit results.</div>
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
@@ -281,16 +297,14 @@ function HowItWorks() {
             className="h-48 w-full object-cover"
             loading="lazy"
           />
-          <div className="p-6 text-sm text-slate-300">
-            Side-by-side scenarios make tradeoffs obvious.
-          </div>
+          <div className="p-6 text-sm text-slate-300">Side-by-side scenarios make tradeoffs obvious.</div>
         </div>
       </div>
     </div>
   );
 }
 
-function Pricing({ onBuy }: { onBuy: () => void }) {
+function Pricing() {
   return (
     <div className="space-y-8">
       <div>
@@ -310,7 +324,7 @@ function Pricing({ onBuy }: { onBuy: () => void }) {
 
           <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-slate-200">
             {[
-              "Professional-grade retirement model",
+              "Delivered as an Excel workbook (inputs + outputs you can audit)",
               "Social Security strategy comparison",
               "Tax-aware cash-flow projections",
               "Scenario & contingency testing",
@@ -339,13 +353,83 @@ function Pricing({ onBuy }: { onBuy: () => void }) {
           >
             Buy for $150
           </a>
-          <button
-            onClick={onBuy}
-            className="mt-3 text-xs text-slate-400 hover:text-white transition text-left"
-          >
-            (Replace button link with your checkout URL)
-          </button>
+          <div className="mt-4 text-xs text-slate-500">Replace this button link with your checkout URL.</div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Manual() {
+  return (
+    <div className="space-y-10">
+      <div>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Quick Start Manual</h2>
+        <p className="mt-3 text-slate-300 max-w-3xl">
+          DIY Retirement Lab Pro is delivered as a{" "}
+          <span className="text-white font-semibold">Microsoft Excel workbook</span>. Inputs are visible, calculations
+          are transparent, and results are deterministic (same inputs → same outputs).
+        </p>
+      </div>
+
+      <section className="space-y-4">
+        <h3 className="text-xl font-semibold text-white">1) What you’ll do in 10 minutes</h3>
+        <ol className="list-decimal list-inside space-y-2 text-slate-300">
+          <li>Open the Excel workbook.</li>
+          <li>Go to the Inputs tab and enter your real numbers.</li>
+          <li>Review assumptions (Social Security, taxes, returns, spending).</li>
+          <li>Run your base case (your “best estimate” scenario).</li>
+          <li>Duplicate the scenario and stress-test: lower returns, higher spending, longer life.</li>
+        </ol>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl font-semibold text-white">2) Inputs that matter most</h3>
+        <ul className="list-disc list-inside space-y-2 text-slate-300">
+          <li>Retirement start age (and any bridge income)</li>
+          <li>Monthly spending (including step-downs if you use them)</li>
+          <li>Social Security claiming age and estimated benefit</li>
+          <li>Account balances and return assumptions</li>
+          <li>Taxes (filing status and related assumptions)</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl font-semibold text-white">3) How to interpret results</h3>
+        <ul className="list-disc list-inside space-y-2 text-slate-300">
+          <li>
+            Start with <span className="text-white font-semibold">year-by-year cash flow</span>,{" "}
+            <span className="text-white font-semibold">taxes</span>, and{" "}
+            <span className="text-white font-semibold">ending balances</span>.
+          </li>
+          <li>Compare scenarios by how much portfolio draw is required and whether balances remain resilient.</li>
+          <li>
+            For Social Security strategies, compare the impact on portfolio withdrawals and long-term sustainability.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl font-semibold text-white">4) Common mistakes</h3>
+        <ul className="list-disc list-inside space-y-2 text-slate-300">
+          <li>Editing formulas in protected cells (edit inputs only).</li>
+          <li>Mixing monthly vs annual inputs inconsistently.</li>
+          <li>Judging the plan only on one “good market” scenario.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl font-semibold text-white">5) Troubleshooting</h3>
+        <ul className="list-disc list-inside space-y-2 text-slate-300">
+          <li>If results look off, confirm all required inputs are filled.</li>
+          <li>Verify the Social Security claim age and benefit assumptions.</li>
+          <li>Confirm spending units (monthly vs annual) match the workbook’s input rules.</li>
+        </ul>
+      </section>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-slate-300">
+        Want a full tab-by-tab user guide? Add your worksheet names + what users edit on each tab, and this manual can be
+        expanded into a complete instruction manual.
       </div>
     </div>
   );
@@ -395,3 +479,4 @@ function FAQ() {
     </div>
   );
 }
+
