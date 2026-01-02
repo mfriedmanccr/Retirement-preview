@@ -112,6 +112,15 @@ export default function Home() {
                 and fully visible calculations.
               </p>
 
+              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
+                Even if you’re already retired, DIY RLP helps you{" "}
+                <span className="text-slate-200 font-semibold">
+                  spend with confidence
+                </span>
+                , stress-test contingencies, and validate that your plan still
+                holds.
+              </p>
+
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
                   onClick={() => go("pricing")}
@@ -152,6 +161,22 @@ export default function Home() {
         >
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
+              {/* Screenshot #1: Summary */}
+              <div className="mb-10">
+                <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                  <img
+                    src="/screenshots/summary.png"
+                    alt="Year-by-year retirement cash flow, taxes, and portfolio balances"
+                    className="w-full object-cover"
+                  />
+                  <div className="p-4 text-sm text-slate-300">
+                    Actual year-by-year output showing spending, Social
+                    Security, withdrawals, taxes, and ending balances — fully
+                    transparent and deterministic.
+                  </div>
+                </div>
+              </div>
+
               <Overview />
             </AnimatedPanel>
 
@@ -173,6 +198,23 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-slate-400 flex justify-between">
+          <div>© {new Date().getFullYear()} DIY Retirement Lab Pro</div>
+          <div className="flex gap-4">
+            <button onClick={() => go("pricing")} className="hover:text-white">
+              Pricing
+            </button>
+            <button onClick={() => go("manual")} className="hover:text-white">
+              Manual
+            </button>
+            <button onClick={() => go("faq")} className="hover:text-white">
+              FAQ
+            </button>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
@@ -200,28 +242,98 @@ function AnimatedPanel({
 
 function Overview() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
         Overview
       </h2>
+
       <p className="text-slate-300 max-w-3xl">
         Most retirement tools are vague. This one is built to answer the
         decisions that actually matter — with deterministic, transparent
         results you can verify.
+      </p>
+
+      <p className="text-slate-400 max-w-3xl">
+        Professional retirement planning at this depth often costs{" "}
+        <span className="text-slate-200 font-semibold">
+          several thousand dollars
+        </span>
+        . DIY RLP gives you the same class of modeling logic, with unlimited
+        “what-if” testing, in Excel.
       </p>
     </div>
   );
 }
 
 function HowItWorks() {
-  return <div className="text-slate-300">How it works</div>;
+  return (
+    <div className="space-y-8">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        How it works
+      </h2>
+
+      <ul className="grid md:grid-cols-4 gap-4 text-slate-300">
+        <li>Input your real numbers</li>
+        <li>Run deterministic models</li>
+        <li>Compare scenarios</li>
+        <li>Decide with confidence</li>
+      </ul>
+    </div>
+  );
 }
+
 function Pricing() {
-  return <div className="text-slate-300">Pricing</div>;
+  return (
+    <div className="space-y-8">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        Pricing
+      </h2>
+
+      <p className="text-slate-300 max-w-3xl">
+        Comparable professional planning commonly costs{" "}
+        <span className="text-slate-200 font-semibold">
+          several thousand dollars
+        </span>
+        . DIY RLP gives you full transparency and unlimited scenarios for $150.
+      </p>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 max-w-md">
+        <div className="text-4xl font-extrabold text-white">$150</div>
+        <div className="text-slate-400 mt-1">One-time · No subscription</div>
+      </div>
+    </div>
+  );
 }
+
 function Manual() {
-  return <div className="text-slate-300">Manual</div>;
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        Quick Start Manual
+      </h2>
+
+      <ol className="list-decimal list-inside text-slate-300 space-y-2">
+        <li>Open the Excel workbook</li>
+        <li>Enter your inputs</li>
+        <li>Review assumptions</li>
+        <li>Compare scenarios</li>
+        <li>Stress-test and validate</li>
+      </ol>
+    </div>
+  );
 }
+
 function FAQ() {
-  return <div className="text-slate-300">FAQ</div>;
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        FAQ
+      </h2>
+
+      <p className="text-slate-300 max-w-3xl">
+        This replaces the modeling portion of professional planning — the part
+        that usually costs thousands of dollars.
+      </p>
+    </div>
+  );
 }
