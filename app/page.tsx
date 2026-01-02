@@ -69,6 +69,12 @@ export default function Page() {
                 year-by-year cash flow, Social Security taxation logic, RMD mechanics,
                 and explicit withdrawal sequencing, all without black-box projections.
               </p>
+              
+              <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
+                What age is best to retire?  What age is best to claim SS?  How much spending
+                power will there be?  How do taxes and RMDs factor in?  DIY RLP allows the testing
+                of every variable to ensure optimal results.
+               </p>  
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
