@@ -135,6 +135,33 @@ export default function Home() {
                   View Screenshots
                 </button>
               </div>
+
+              <div className="mt-8 grid sm:grid-cols-3 gap-3 max-w-2xl">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-sm font-semibold text-white">
+                    Deterministic
+                  </div>
+                  <div className="text-sm text-slate-400 mt-1">
+                    Same inputs → same outputs. No black-box Monte Carlo.
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-sm font-semibold text-white">
+                    Transparent
+                  </div>
+                  <div className="text-sm text-slate-400 mt-1">
+                    Every number is traceable. You can audit each step.
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-sm font-semibold text-white">
+                    Scenario-ready
+                  </div>
+                  <div className="text-sm text-slate-400 mt-1">
+                    Change assumptions and compare side-by-side.
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="lg:col-span-5">
@@ -147,6 +174,18 @@ export default function Home() {
                 <div className="p-5 text-sm text-slate-300">
                   Built for serious planners who want clear, repeatable answers.
                 </div>
+              </div>
+
+              <div className="mt-4 rounded-3xl border border-white/10 bg-white/[0.03] p-5">
+                <div className="text-sm font-semibold text-white">
+                  What you get
+                </div>
+                <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                  <li>• Year-by-year cash flow and ending balances</li>
+                  <li>• Social Security + withdrawals + taxes in one view</li>
+                  <li>• Stress testing: spending, returns, claim ages</li>
+                  <li>• A workbook designed to be auditable, not mysterious</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -161,7 +200,7 @@ export default function Home() {
         >
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
-              <Overview />
+              <Overview go={go} />
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "how"}>
@@ -177,7 +216,7 @@ export default function Home() {
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "faq"}>
-              <FAQ />
+              <FAQ go={go} />
             </AnimatedPanel>
           </div>
         </div>
@@ -227,27 +266,82 @@ function AnimatedPanel({
   );
 }
 
-function Overview() {
+function Overview({ go }: { go: (tab: TabKey) => void }) {
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        Overview
-      </h2>
+      <div className="space-y-3">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          Overview
+        </h2>
 
-      <p className="text-slate-300 max-w-3xl">
-        Most retirement tools are vague. This one is built to answer the
-        decisions that actually matter — with deterministic, transparent results
-        you can verify.
-      </p>
+        <p className="text-slate-300 max-w-3xl">
+          Most retirement tools are vague. DIY RLP is built for decisions that
+          actually matter: when you can retire, how much you can safely spend,
+          when to claim Social Security, and what happens when assumptions
+          change.
+        </p>
 
-      <p className="text-slate-400 max-w-3xl">
-        Professional retirement planning at this depth often costs{" "}
-        <span className="text-slate-200 font-semibold">
-          several thousand dollars
-        </span>
-        . DIY RLP gives you the same class of modeling logic, with unlimited
-        “what-if” testing, in Excel.
-      </p>
+        <p className="text-slate-400 max-w-3xl">
+          You’ll see year-by-year results with a transparent logic trail—spend,
+          income sources, taxes, and end balances—so you can understand the
+          “why,” not just the “what.”
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">Decision-grade</div>
+          <div className="text-sm text-slate-400 mt-2">
+            Built to answer specific choices: retire date, spending level,
+            claiming age, and withdrawal behavior.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">Audit-ready</div>
+          <div className="text-sm text-slate-400 mt-2">
+            Transparent inputs and calculations. You can trace and verify each
+            line item.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">Scenario testing</div>
+          <div className="text-sm text-slate-400 mt-2">
+            Compare “what-if” runs: spending, returns, inflation assumptions,
+            Social Security timing, and more.
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <div className="text-sm font-semibold text-white">
+              Want to see how it works?
+            </div>
+            <div className="text-sm text-slate-400 mt-1">
+              The process is simple: enter inputs, run scenarios, compare
+              outcomes, decide.
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={() => go("how")}
+              className="px-4 py-2 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
+            >
+              How it Works
+            </button>
+            <button
+              onClick={() => go("screenshots")}
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold hover:opacity-90 transition"
+            >
+              Screenshots
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -255,16 +349,61 @@ function Overview() {
 function HowItWorks() {
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        How it works
-      </h2>
+      <div className="space-y-3">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          How it works
+        </h2>
+        <p className="text-slate-300 max-w-3xl">
+          DIY RLP is designed to be straightforward: inputs go in, deterministic
+          logic runs, and you get a clear year-by-year plan you can verify.
+        </p>
+      </div>
 
-      <ul className="grid md:grid-cols-4 gap-4 text-slate-300">
-        <li>Input your real numbers</li>
-        <li>Run deterministic models</li>
-        <li>Compare scenarios</li>
-        <li>Decide with confidence</li>
-      </ul>
+      <div className="grid md:grid-cols-4 gap-4 text-slate-300">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">1) Enter inputs</div>
+          <div className="text-sm text-slate-400 mt-2">
+            Accounts, spending goals, Social Security, and assumptions.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">
+            2) Run a scenario
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            The workbook produces year-by-year outputs automatically.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">
+            3) Compare options
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            Test spending levels, claim ages, and return assumptions.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="text-sm font-semibold text-white">4) Decide</div>
+          <div className="text-sm text-slate-400 mt-2">
+            Choose the plan you understand and can defend.
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="text-sm font-semibold text-white">
+          What makes it different
+        </div>
+        <ul className="mt-3 space-y-2 text-sm text-slate-300">
+          <li>• Deterministic engine: no hidden randomness</li>
+          <li>• Transparent outputs: taxes, withdrawals, balances visible</li>
+          <li>• Built for iteration: “what-if” testing is the point</li>
+          <li>• Excel-native: familiar, editable, and auditable</li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -272,21 +411,86 @@ function HowItWorks() {
 function Pricing() {
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-        Pricing
-      </h2>
+      <div className="space-y-3">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          Pricing
+        </h2>
 
-      <p className="text-slate-300 max-w-3xl">
-        Comparable professional planning commonly costs{" "}
-        <span className="text-slate-200 font-semibold">
-          several thousand dollars
-        </span>
-        . DIY RLP gives you full transparency and unlimited scenarios for $150.
-      </p>
+        <p className="text-slate-300 max-w-3xl">
+          Comparable professional planning at this depth commonly costs{" "}
+          <span className="text-slate-200 font-semibold">
+            several thousand dollars
+          </span>
+          . DIY RLP gives you full transparency and unlimited scenario testing
+          for a one-time price.
+        </p>
+      </div>
 
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 max-w-md">
-        <div className="text-4xl font-extrabold text-white">$150</div>
-        <div className="text-slate-400 mt-1">One-time · No subscription</div>
+      <div className="grid lg:grid-cols-2 gap-6 items-start">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
+          <div className="text-4xl font-extrabold text-white">$150</div>
+          <div className="text-slate-400 mt-1">One-time · No subscription</div>
+
+          <ul className="mt-6 space-y-2 text-sm text-slate-300">
+            <li>• Full Excel workbook</li>
+            <li>• Deterministic year-by-year outputs</li>
+            <li>• Unlimited scenarios: spending, SS claiming, assumptions</li>
+            <li>• Transparent calculations you can audit</li>
+          </ul>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div className="text-sm font-semibold text-white">Bottom line</div>
+            <div className="text-sm text-slate-400 mt-1">
+              If you care about the “why” behind the numbers, this is built for
+              you.
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+          <div className="text-sm font-semibold text-white">
+            Who this is for
+          </div>
+          <div className="mt-2 text-sm text-slate-300 space-y-3">
+            <p>
+              DIY RLP is for people who want a retirement plan they can
+              understand, verify, and defend—without paying ongoing fees or
+              relying on black-box projections.
+            </p>
+            <p className="text-slate-400">
+              If you can work a spreadsheet and you care about “why the answer
+              is the answer,” you’re the target user.
+            </p>
+          </div>
+
+          <div className="mt-6 grid sm:grid-cols-2 gap-3">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="text-sm font-semibold text-white">
+                Pre-retirement
+              </div>
+              <div className="text-sm text-slate-400 mt-1">
+                Test timing and spending choices before you commit.
+              </div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <div className="text-sm font-semibold text-white">
+                Already retired
+              </div>
+              <div className="text-sm text-slate-400 mt-1">
+                Validate the plan and stress test contingencies.
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="text-sm font-semibold text-white">
+              What you’re buying
+            </div>
+            <div className="text-sm text-slate-400 mt-1">
+              A decision-grade modeling engine in Excel—transparent by design.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -300,7 +504,7 @@ function Screenshots() {
       </h2>
 
       <p className="text-slate-300 max-w-3xl">
-        Place program screenshots here. This tab is intentionally clean right
+        Program screenshots will live here. This page is intentionally clean for
         now.
       </p>
 
@@ -311,15 +515,61 @@ function Screenshots() {
   );
 }
 
-function FAQ() {
+function FAQ({ go }: { go: (tab: TabKey) => void }) {
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">FAQ</h2>
+    <div className="space-y-8">
+      <div className="space-y-3">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">FAQ</h2>
+        <p className="text-slate-300 max-w-3xl">
+          Common questions about what DIY RLP is—and what it isn’t.
+        </p>
+      </div>
 
-      <p className="text-slate-300 max-w-3xl">
-        This replaces the modeling portion of professional planning — the part
-        that usually costs thousands of dollars.
-      </p>
+      <div className="space-y-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div className="text-sm font-semibold text-white">
+            Is this a subscription?
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            No. It’s a one-time purchase. You can run unlimited scenarios.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div className="text-sm font-semibold text-white">
+            Is it a black box?
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            No. The workbook is designed for transparency: inputs are visible
+            and outputs are traceable.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div className="text-sm font-semibold text-white">
+            Does it replace professional advice?
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            It replaces the modeling portion of professional planning—the part
+            that usually costs thousands—by giving you decision-grade outputs.
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div className="text-sm font-semibold text-white">
+            Where can I see the program?
+          </div>
+          <div className="text-sm text-slate-400 mt-2">
+            Use the Screenshots tab to view program visuals.
+          </div>
+          <button
+            onClick={() => go("screenshots")}
+            className="mt-4 px-4 py-2 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
+          >
+            Go to Screenshots
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
