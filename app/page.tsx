@@ -1,6 +1,7 @@
- "use client";
+"use client";
 
 import { useMemo, useRef, useState } from "react";
+import Image from "next/image";
 
 type TabKey = "overview" | "how" | "pricing" | "manual" | "faq";
 
@@ -139,9 +140,11 @@ export default function Home() {
 
             <div className="lg:col-span-5">
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-black/40">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80"
                   alt="Financial planning desk"
+                  width={1400}
+                  height={900}
                   className="h-72 md:h-96 w-full object-cover"
                 />
                 <div className="p-5 text-sm text-slate-300">
@@ -161,18 +164,35 @@ export default function Home() {
         >
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
-              {/* Screenshot #1: Summary */}
+              {/* Screenshot #0 */}
               <div className="mb-10">
                 <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                  <img
+                  <Image
+                    src="/screenshots/first.png"
+                    alt="DIY RLP workbook screenshot"
+                    width={1600}
+                    height={900}
+                    className="w-full object-cover"
+                  />
+                  <div className="p-4 text-sm text-slate-300">
+                    Screenshot from the workbook.
+                  </div>
+                </div>
+              </div>
+
+              {/* Screenshot #1 */}
+              <div className="mb-10">
+                <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+                  <Image
                     src="/screenshots/summary.png"
                     alt="Year-by-year retirement cash flow, taxes, and portfolio balances"
+                    width={1600}
+                    height={900}
                     className="w-full object-cover"
                   />
                   <div className="p-4 text-sm text-slate-300">
                     Actual year-by-year output showing spending, Social
-                    Security, withdrawals, taxes, and ending balances — fully
-                    transparent and deterministic.
+                    Security, withdrawals, taxes, and ending balances.
                   </div>
                 </div>
               </div>
@@ -337,4 +357,3 @@ function FAQ() {
     </div>
   );
 }
-
