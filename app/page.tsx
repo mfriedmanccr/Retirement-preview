@@ -88,9 +88,44 @@ export default function Home() {
 
               <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-2xl">
                 A professional-grade retirement planning engine that answers the
-                hard questions — for{" "}
+                hard questions: retirement timing, spending safety, Social
+                Security strategy, and how long your money lasts — for{" "}
                 <span className="font-semibold text-white">$150</span>.
               </p>
+
+              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
+                Hiring a professional for this level of retirement planning
+                commonly costs{" "}
+                <span className="text-slate-200 font-semibold">
+                  several thousand dollars
+                </span>
+                . DIY RLP gives you that same class of decision-grade modeling
+                with unlimited scenario testing.
+              </p>
+
+              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
+                Built in{" "}
+                <span className="text-slate-200 font-semibold">
+                  Microsoft Excel
+                </span>{" "}
+                — a familiar format you already know, with transparent inputs
+                and fully visible calculations.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button
+                  onClick={() => go("pricing")}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold hover:opacity-90 transition"
+                >
+                  Get Access
+                </button>
+                <button
+                  onClick={() => go("manual")}
+                  className="px-6 py-3 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
+                >
+                  Read the Manual
+                </button>
+              </div>
             </div>
 
             <div className="lg:col-span-5">
@@ -117,34 +152,6 @@ export default function Home() {
         >
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
-              {/* Screenshot #0 */}
-              <div className="mb-10">
-                <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                  <img
-                    src="/screenshots/first.png"
-                    alt="DIY RLP workbook screenshot"
-                    className="w-full object-cover"
-                  />
-                  <div className="p-4 text-sm text-slate-300">
-                    Screenshot from the workbook.
-                  </div>
-                </div>
-              </div>
-
-              {/* Screenshot #1 */}
-              <div className="mb-10">
-                <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-                  <img
-                    src="/screenshots/summary.png"
-                    alt="Year-by-year retirement output"
-                    className="w-full object-cover"
-                  />
-                  <div className="p-4 text-sm text-slate-300">
-                    Year-by-year output showing spending, taxes, and balances.
-                  </div>
-                </div>
-              </div>
-
               <Overview />
             </AnimatedPanel>
 
@@ -192,8 +199,20 @@ function AnimatedPanel({
 }
 
 function Overview() {
-  return <div className="text-slate-300">Overview content</div>;
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        Overview
+      </h2>
+      <p className="text-slate-300 max-w-3xl">
+        Most retirement tools are vague. This one is built to answer the
+        decisions that actually matter — with deterministic, transparent
+        results you can verify.
+      </p>
+    </div>
+  );
 }
+
 function HowItWorks() {
   return <div className="text-slate-300">How it works</div>;
 }
