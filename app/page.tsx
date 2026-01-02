@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useMemo, useRef, useState } from "react";
 
@@ -382,4 +382,16 @@ function FAQ() {
         {items.map((it) => (
           <details
             key={it.q}
-            className="group rounded-2xl border border-white/10 bg-whit
+            className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/[0.06] transition"
+          >
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span className="font-semibold text-white">{it.q}</span>
+              <span className="text-slate-400 group-open:rotate-180 transition">⌄</span>
+            </summary>
+            <p className="mt-3 text-sm text-slate-300 leading-relaxed">{it.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  );
+}
