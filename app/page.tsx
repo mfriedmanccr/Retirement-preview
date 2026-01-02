@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type TabKey = "overview" | "how" | "pricing" | "faq";
 
 export default function Home() {
   const [active, setActive] = useState<TabKey>("overview");
+  const panelsRef = useRef<HTMLDivElement | null>(null);
 
   const tabs = useMemo(
     () => [
@@ -16,6 +17,14 @@ export default function Home() {
     ],
     []
   );
+
+  function go(tab: TabKey) {
+    setActive(tab);
+    // scroll to the tab content area so the user sees the section change
+    requestAnimationFrame(() => {
+      panelsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100 antialiased">
@@ -34,7 +43,7 @@ export default function Home() {
             {tabs.map((t) => (
               <button
                 key={t.key}
-                onClick={() => setActive(t.key)}
+                onClick={() => go(t.key)}
                 className={[
                   "px-3 py-2 rounded-xl text-sm font-medium transition",
                   active === t.key
@@ -45,12 +54,13 @@ export default function Home() {
                 {t.label}
               </button>
             ))}
-            <a
-              href="#"
+
+            <button
+              onClick={() => go("pricing")}
               className="ml-2 hidden sm:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold hover:opacity-90 transition"
             >
               Get Access
-            </a>
+            </button>
           </nav>
         </div>
       </header>
@@ -76,15 +86,20 @@ export default function Home() {
                 for <span className="font-semibold text-white">$150</span>.
               </p>
 
+              <p className="mt-4 text-base md:text-lg text-slate-400 max-w-2xl">
+                Even if you’re already retired, DIY RLP helps you <span className="text-slate-200 font-semibold">spend with confidence</span>,
+                stress-test contingencies, and validate that your plan still holds.
+              </p>
+
               <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#"
+                <button
+                  onClick={() => go("pricing")}
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-500 text-slate-950 font-semibold hover:opacity-90 transition"
                 >
                   Get Access
-                </a>
+                </button>
                 <button
-                  onClick={() => setActive("how")}
+                  onClick={() => go("how")}
                   className="px-6 py-3 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition"
                 >
                   See How It Works
@@ -97,15 +112,14 @@ export default function Home() {
                   <div>Retirement age + SS timing + taxes in one model.</div>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="font-semibold text-white mb-1">Not a black box</div>
-                  <div>Deterministic outputs you can audit and trust.</div>
+                  <div className="font-semibold text-white mb-1">Retired already?</div>
+                  <div>Confirm safe spending and stress-test your current plan.</div>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-5">
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-black/40">
-                {/* Stock photo (hotlinked). Replace anytime. */}
                 <img
                   src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80"
                   alt="Financial planning desk"
@@ -119,16 +133,19 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-4 text-xs text-slate-500">
-                Photo: Unsplash (hotlinked). If you prefer, swap to your own images.
+                Photo: Unsplash (hotlinked). Swap to your own images anytime.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tab Content (animated transitions via CSS) */}
+      {/* Tab Content */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden">
+        <div
+          ref={panelsRef}
+          className="rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden"
+        >
           <div className="p-6 sm:p-10">
             <AnimatedPanel show={active === "overview"}>
               <Overview />
@@ -139,7 +156,7 @@ export default function Home() {
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "pricing"}>
-              <Pricing />
+              <Pricing onBuy={() => go("pricing")} />
             </AnimatedPanel>
 
             <AnimatedPanel show={active === "faq"}>
@@ -153,16 +170,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-slate-400 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} DIY Retirement Lab Pro</div>
           <div className="flex gap-4">
-            <button
-              onClick={() => setActive("pricing")}
-              className="hover:text-white transition"
-            >
+            <button onClick={() => go("pricing")} className="hover:text-white transition">
               Pricing
             </button>
-            <button
-              onClick={() => setActive("faq")}
-              className="hover:text-white transition"
-            >
+            <button onClick={() => go("faq")} className="hover:text-white transition">
               FAQ
             </button>
           </div>
@@ -177,7 +188,9 @@ function AnimatedPanel({ show, children }: { show: boolean; children: React.Reac
     <div
       className={[
         "transition-all duration-300 ease-out",
-        show ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 h-0 overflow-hidden pointer-events-none",
+        show
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 translate-y-2 h-0 overflow-hidden pointer-events-none",
       ].join(" ")}
       aria-hidden={!show}
     >
@@ -195,13 +208,17 @@ function Overview() {
           Most retirement tools are vague. This one is built to answer the decisions that actually matter —
           with deterministic, transparent results you can verify.
         </p>
+        <p className="mt-3 text-slate-400 max-w-3xl">
+          And if you’re already retired, it helps you validate safe spending, adapt to market changes,
+          and test “what if” scenarios before they become real problems.
+        </p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-4">
         {[
           ["Earliest safe retirement age", "Know when you can stop working — with year-by-year clarity."],
           ["Social Security strategy", "Compare 62 vs 65 vs 67+ and see tradeoffs and breakpoints."],
-          ["Contingency testing", "Bad markets, higher spending, longevity, taxes — all modeled."],
+          ["Spend with confidence (retired too)", "Stress-test your current plan and confirm it still holds."],
         ].map(([title, desc]) => (
           <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="font-semibold text-white">{title}</div>
@@ -212,8 +229,8 @@ function Overview() {
 
       <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6">
         <div className="text-sm text-slate-300">
-          <span className="font-semibold text-white">Bottom line:</span> you can model and test every scenario
-          before making irreversible decisions.
+          <span className="font-semibold text-white">Bottom line:</span> model and test every scenario before
+          making irreversible decisions.
         </div>
       </div>
     </div>
@@ -253,7 +270,7 @@ function HowItWorks() {
             loading="lazy"
           />
           <div className="p-6 text-sm text-slate-300">
-            Clean structure + transparent assumptions so you can audit results.
+            Transparent assumptions so you can audit results.
           </div>
         </div>
 
@@ -273,13 +290,13 @@ function HowItWorks() {
   );
 }
 
-function Pricing() {
+function Pricing({ onBuy }: { onBuy: () => void }) {
   return (
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Pricing</h2>
         <p className="mt-3 text-slate-300 max-w-3xl">
-          Thousands of dollars of financial planning logic at your fingertips — for a simple one-time price.
+          Thousands of dollars of planning logic at your fingertips — for a simple one-time price.
         </p>
       </div>
 
@@ -311,12 +328,8 @@ function Pricing() {
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] p-8 flex flex-col">
-          <div className="text-sm text-slate-300">
-            Ready to stop guessing?
-          </div>
-          <div className="mt-2 text-xl font-semibold text-white">
-            Get Access
-          </div>
+          <div className="text-sm text-slate-300">Ready to stop guessing?</div>
+          <div className="mt-2 text-xl font-semibold text-white">Get Access</div>
           <p className="mt-3 text-sm text-slate-300 leading-relaxed">
             Purchase, download, and start modeling immediately.
           </p>
@@ -326,9 +339,12 @@ function Pricing() {
           >
             Buy for $150
           </a>
-          <div className="mt-4 text-xs text-slate-500">
-            Replace this button link with your checkout URL.
-          </div>
+          <button
+            onClick={onBuy}
+            className="mt-3 text-xs text-slate-400 hover:text-white transition text-left"
+          >
+            (Replace button link with your checkout URL)
+          </button>
         </div>
       </div>
     </div>
@@ -343,11 +359,11 @@ function FAQ() {
     },
     {
       q: "Who is this for?",
-      a: "People who struggle with retirement timing, how much is enough, Social Security strategy, and whether their money lasts under real-world contingencies.",
+      a: "People who struggle with retirement timing, how much is enough, Social Security strategy, and whether their money lasts under real-world contingencies — including those already retired who want to spend confidently.",
     },
     {
-      q: "Can I test multiple scenarios?",
-      a: "Yes. You can model and compare scenarios side-by-side: retirement age, SS timing, spending changes, and adverse market conditions.",
+      q: "I’m already retired. Is this still useful?",
+      a: "Yes. Use it to validate safe spending, stress-test market and expense shocks, and confirm your plan still holds over time.",
     },
     {
       q: "Why deterministic instead of Monte Carlo?",
@@ -359,25 +375,11 @@ function FAQ() {
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">FAQ</h2>
-        <p className="mt-3 text-slate-300 max-w-3xl">
-          Clear answers to common questions.
-        </p>
+        <p className="mt-3 text-slate-300 max-w-3xl">Clear answers to common questions.</p>
       </div>
 
       <div className="space-y-3">
         {items.map((it) => (
           <details
             key={it.q}
-            className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/[0.06] transition"
-          >
-            <summary className="cursor-pointer list-none flex items-center justify-between gap-4">
-              <span className="font-semibold text-white">{it.q}</span>
-              <span className="text-slate-400 group-open:rotate-180 transition">⌄</span>
-            </summary>
-            <p className="mt-3 text-sm text-slate-300 leading-relaxed">{it.a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  );
-}
+            className="group rounded-2xl border border-white/10 bg-whit
