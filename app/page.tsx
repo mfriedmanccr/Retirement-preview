@@ -65,17 +65,11 @@ export default function Page() {
              </h1>
 
               <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-                DIY Retirement Lab Pro lets you model it all; accumulation pre-retirement,
-                year-by-year cash flow, Social Security taxation logic, RMD mechanics,
-                and explicit withdrawal sequencing, all without black-box projections.
+                DIY RLP takes all the guesswork out of retirement planning; everything from accumulation
+                pre-retirement to post-retirement cash flow.  No stone is left unturned, including basic
+                taxation, complex Social Security taxation logic, RMD mechanics, and explicit withdrawal sequencing.
               </p>
               
-              <p className="mt-4 max-w-xl text-base text-slate-600 md:text-lg">
-                What age is best to retire?  What age is best to claim SS?  How much spending
-                power will there be?  How do taxes and RMDs factor in?  DIY RLP allows the testing
-                of every variable to ensure optimal results.
-               </p>  
-
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   "Year-by-year engine",
